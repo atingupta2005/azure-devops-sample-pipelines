@@ -1,5 +1,5 @@
 trigger:
-- master
+- 05-azure-kubernetes-cluster-iaac-pipeline
 
 pool:
   vmImage: 'ubuntu-latest'
