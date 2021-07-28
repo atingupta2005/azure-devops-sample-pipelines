@@ -1,6 +1,6 @@
 
 trigger:
-- master
+- 06-azure-kubernetes-code-ci-cd-pipeline
 
 resources:
 - repo: self
