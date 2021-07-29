@@ -39,27 +39,3 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'manifests'
         publishLocation: 'Container'
-- stage: Deploy
-  displayName: Deploy image
-  jobs:
-  - job: Deploy
-    displayName: Deploy
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        buildType: 'current'
-        artifactName: 'manifests'
-        itemPattern: '**/*.yml'
-        targetPath: '$(System.ArtifactsDirectory)'
-    - task: KubernetesManifest@0
-      inputs:
-        action: 'deploy'
-        kubernetesServiceConnection: 'azure-kubernetes-connection'
-        namespace: 'default'
-        manifests: '$(System.ArtifactsDirectory)/configuration/kubernetes/deployment.yml'
-        containers: 'atingupta2005/currency-exchange-devops:latest'
-# Stage 2
-# Download the K8S Files
-# Deploy to K8S Cluster with Docker Image
